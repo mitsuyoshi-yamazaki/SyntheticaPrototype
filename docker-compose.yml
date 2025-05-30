@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  "${APP_NAME}":
+  app:
     container_name: "${APP_NAME}"
     build: ./
     ports:
