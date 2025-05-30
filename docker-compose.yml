@@ -7,6 +7,6 @@ services:
       - "${DOCKER_PORT}:${HOST_PORT}"
     tty: true
     volumes:
-      - ./app:/usr/src/app
+      - ./src:/usr/src/src
     environment:
       PORT: "${HOST_PORT}"
