@@ -19,14 +19,14 @@
 ### プロジェクト初期セットアップ
 - [完了] Next.jsプロジェクトの初期化
 - [完了] package.jsonの作成と依存関係のインストール（TypeScript, ESLint, Jest, p5.js, Tailwind CSS）
-- [進行中] TypeScript設定ファイル（tsconfig.json）の作成
-- [未着手] ESLint設定ファイルの作成
-- [未着手] Jest設定ファイルの作成
-- [未着手] Tailwind CSS設定ファイルの作成
-- [未着手] .gitignoreファイルの作成・更新
+- [完了] TypeScript設定ファイル（tsconfig.json）の作成
+- [完了] ESLint設定ファイルの作成
+- [完了] Jest設定ファイルの作成
+- [完了] Tailwind CSS設定ファイルの作成
+- [完了] .gitignoreファイルの作成・更新
 
 ### 基本アプリケーション構造の構築
-- [未着手] Next.jsのページ構造の作成（pages/index.tsx等）
+- [進行中] Next.jsのページ構造の作成（pages/index.tsx等）
 - [未着手] 基本的なレイアウトコンポーネントの作成
 - [未着手] Tailwind CSSを使用したベースとなるスタイルの設定
 - [未着手] p5.jsを統合するためのCanvasコンポーネントの作成
