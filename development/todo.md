@@ -17,9 +17,9 @@
 ## TODO
 
 ### プロジェクト初期セットアップ
-- [進行中] Next.jsプロジェクトの初期化
-- [未着手] package.jsonの作成と依存関係のインストール（TypeScript, ESLint, Jest, p5.js, Tailwind CSS）
-- [未着手] TypeScript設定ファイル（tsconfig.json）の作成
+- [完了] Next.jsプロジェクトの初期化
+- [完了] package.jsonの作成と依存関係のインストール（TypeScript, ESLint, Jest, p5.js, Tailwind CSS）
+- [進行中] TypeScript設定ファイル（tsconfig.json）の作成
 - [未着手] ESLint設定ファイルの作成
 - [未着手] Jest設定ファイルの作成
 - [未着手] Tailwind CSS設定ファイルの作成
