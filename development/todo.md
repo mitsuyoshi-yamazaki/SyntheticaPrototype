@@ -15,3 +15,8 @@
   - その他：以上の状態では表現できない状態である場合：自然言語で状態の説明を記載すること
 
 ## TODO
+- [完了] 「app」ディレクトリを「src」へリネームする
+- [未着手] Next.js(TypeScript)の新規プロジェクトをsrcディレクトリに作成する
+- [未着手] ESLint, Jest, Tailwind, p5.jsをsrcディレクトリのNext.jsプロジェクトに導入する
+- [未着手] Next.jsアプリが空の画面で起動することを確認する
+- [未着手] .env, .env.sample, Dockerfile, docker-compose.ymlのNext.js起動用設定を確認・調整する
