@@ -1,0 +1,8 @@
+{
+  "name": "SyntheticaPrototype",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mitsuyoshi-yamazaki/SyntheticaPrototype.git",
+  "author": "Yamazaki Mitsuyoshi <mitsuyoshi.tsukuba@gmail.com>",
+  "license": "MIT"
+}

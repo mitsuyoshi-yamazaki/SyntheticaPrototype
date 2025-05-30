@@ -4,3 +4,4 @@
 ## プロジェクトの知識
 - `/knowledge/requirements.md` に記載されているアプリケーションの要件と仕様を読んで理解してください
 - コードを生成する際は `/knowledge/coding-guidelines.md` の内容に従ってください
+- 現在の進行状況を管理するために、 `/development/todo.md` を参照し作業を開始してください
