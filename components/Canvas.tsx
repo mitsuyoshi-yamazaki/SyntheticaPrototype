@@ -32,12 +32,15 @@ function CanvasComponent() {
           }
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         p5Instance = new p5Constructor(sketch, canvasRef.current!)
       } catch (error) {
         console.error('Failed to load p5.js:', error)
       }
     }
 
+    // FixMe
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     loadP5AndCreateSketch()
 
     return () => {
