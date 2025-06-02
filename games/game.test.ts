@@ -1,4 +1,3 @@
-// 基本的なユーティリティ関数のテスト例
 describe('Basic test setup', () => {
   test('Jest is working correctly', () => {
     expect(1 + 1).toBe(2)
