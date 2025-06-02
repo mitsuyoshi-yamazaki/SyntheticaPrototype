@@ -20,7 +20,7 @@
 - [完了] Next.jsプロジェクトの初期化
 - [完了] package.jsonの作成と依存関係のインストール（TypeScript, ESLint, Jest, p5.js, Tailwind CSS）
 - [完了] TypeScript設定ファイル（tsconfig.json）の作成
-- [完了] ESLint設定ファイルの作成
+- [完了] ESLint設定ファイルの作成（.eslintrc.json → eslint.config.mjs移行完了）
 - [完了] Jest設定ファイルの作成
 - [完了] Tailwind CSS設定ファイルの作成
 - [完了] .gitignoreファイルの作成・更新
@@ -33,7 +33,7 @@
 
 ### 開発・テスト環境の整備
 - [完了] 開発サーバーの起動確認
-- [完了] ESLintが正常に動作することの確認
+- [完了] ESLintが正常に動作することの確認（Flat Config移行済み）
 - [完了] Jestによるテスト実行環境の確認
 - [完了] ビルドプロセスの確認
 - [完了] プロダクションサーバーの起動確認
@@ -45,8 +45,11 @@
 - [未着手] GitHub ActionsでのCI設定（テスト実行）
 
 ### ドキュメント整備
-- [未着手] README.mdの更新（プロジェクト説明、セットアップ手順等）
+- [完了] README.mdの更新（プロジェクト説明、セットアップ手順等）
 - [未着手] コーディング規約の詳細化
+
+### 設定ファイル管理
+- [完了] ESLint Flat Config（eslint.config.mjs）への移行
 
 ### マイルストーン1完了
 - [完了] 基本的なアプリケーションインフラストラクチャの構築とブラウザでの動作確認
