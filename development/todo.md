@@ -42,7 +42,7 @@
 - [未着手] Vercelデプロイ設定
 
 ### CI/CD設定
-- [未着手] GitHub ActionsでのCI設定（テスト実行）
+- [完了] GitHub ActionsでのCI設定（テスト実行、Lint、ビルドチェック）
 
 ### ドキュメント整備
 - [完了] README.mdの更新（プロジェクト説明、セットアップ手順等）
