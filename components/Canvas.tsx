@@ -1,35 +1,49 @@
 import { useEffect, useRef } from 'react'
-import p5 from 'p5'
+import type p5 from 'p5'
 
-export default function Canvas() {
+function CanvasComponent() {
   const canvasRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!canvasRef.current) return
 
-    const sketch = (p: p5) => {
-      p.setup = () => {
-        p.createCanvas(800, 600)
-        p.background(0xFF)
-      }
+    let p5Instance: p5 | null = null
 
-      p.draw = () => {
-        p.fill(0x22)
-        p.rect(100, 100, 100, 100)
-      }
+    const loadP5AndCreateSketch = async () => {
+      try {
+        const p5Constructor = (await import('p5')).default
+        
+        const sketch = (p: p5) => {
+          p.setup = () => {
+            p.createCanvas(800, 600)
+            p.background(255)
+          }
 
-      p.windowResized = () => {
-        // const container = canvasRef.current
-        // if (container) {
-        //   p.resizeCanvas(container.offsetWidth, container.offsetHeight)
-        // }
+          p.draw = () => {
+            p.fill(34)
+            p.rect(100, 100, 100, 100)
+          }
+
+          p.windowResized = () => {
+            const container = canvasRef.current
+            if (container) {
+              p.resizeCanvas(container.offsetWidth, container.offsetHeight)
+            }
+          }
+        }
+
+        p5Instance = new p5Constructor(sketch, canvasRef.current!)
+      } catch (error) {
+        console.error('Failed to load p5.js:', error)
       }
     }
 
-    const p5Instance = new p5(sketch, canvasRef.current)
+    loadP5AndCreateSketch()
 
     return () => {
-      p5Instance.remove()
+      if (p5Instance) {
+        p5Instance.remove()
+      }
     }
   }, [])
 
@@ -41,3 +55,5 @@ export default function Canvas() {
     />
   )
 }
+
+export default CanvasComponent
