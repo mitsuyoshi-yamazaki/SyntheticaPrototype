@@ -3,7 +3,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import pluginNext from "@next/eslint-plugin-next";
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
   {
@@ -45,4 +45,11 @@ export default defineConfig([
       "react/prop-types": "off", // TypeScriptを使用しているため
     },
   },
+  globalIgnores([
+    "eslint.config.mjs",
+    "jest.config.js",
+    "postcss.config.js",
+    "tailwind.config.js",
+    "tsconfig.json",
+  ]),
 ]);
