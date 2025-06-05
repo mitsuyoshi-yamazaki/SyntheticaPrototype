@@ -42,11 +42,15 @@ export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     rules: {
+      "quotes": ["error", "double", { "avoidEscape": true }],
+      "semi": ["error", "never"],
+      // Next.js関連のルール調整
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
       // TypeScript関連のルール調整
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/explicit-member-accessibility": "error",
       // React関連のルール調整
       "react/react-in-jsx-scope": "off", // Next.jsでは不要
       "react/prop-types": "off", // TypeScriptを使用しているため
@@ -58,5 +62,7 @@ export default defineConfig([
     "postcss.config.js",
     "tailwind.config.js",
     "tsconfig.json",
+    ".next/**/*",
+    "node_modules/**/*",
   ]),
 ]);
