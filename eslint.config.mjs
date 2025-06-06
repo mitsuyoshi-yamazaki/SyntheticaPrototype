@@ -1,9 +1,10 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import pluginNext from "@next/eslint-plugin-next";
-import { defineConfig, globalIgnores } from "eslint/config";
+import js from "@eslint/js"
+import globals from "globals"
+import tseslint from "typescript-eslint"
+import pluginReact from "eslint-plugin-react"
+import pluginNext from "@next/eslint-plugin-next"
+import { defineConfig, globalIgnores } from "eslint/config"
+import eslintConfigPrettier from "eslint-config-prettier/flat"
 
 export default defineConfig([
   {
@@ -42,29 +43,32 @@ export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     rules: {
-      "quotes": ["error", "double", { "avoidEscape": true }],
-      "semi": ["error", "never"],
-      "eqeqeq": ["error", "always", { "null": "ignore" }],
-      "curly": "error",
+      quotes: ["error", "double", { avoidEscape: true }],
+      semi: ["error", "never"],
+      eqeqeq: ["error", "always", { null: "ignore" }],
+      curly: "error",
       // Next.js関連のルール調整
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
       // TypeScript関連のルール調整
       "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/explicit-member-accessibility": "error",
       "@typescript-eslint/strict-boolean-expressions": [
         "error",
         {
-          "allowString": false,
-          "allowNumber": false,
-          "allowNullableObject": false,
-          "allowNullableBoolean": false,
-          "allowNullableString": false,
-          "allowNullableNumber": false,
-          "allowNullableEnum": false,
-          "allowAny": false
-        }
+          allowString: false,
+          allowNumber: false,
+          allowNullableObject: false,
+          allowNullableBoolean: false,
+          allowNullableString: false,
+          allowNullableNumber: false,
+          allowNullableEnum: false,
+          allowAny: false,
+        },
       ],
       // React関連のルール調整
       "react/react-in-jsx-scope": "off", // Next.jsでは不要
@@ -76,8 +80,10 @@ export default defineConfig([
     "jest.config.js",
     "postcss.config.js",
     "tailwind.config.js",
+    "prettier.config.js",
     "tsconfig.json",
     ".next/**/*",
     "node_modules/**/*",
   ]),
-]);
+  eslintConfigPrettier,
+])

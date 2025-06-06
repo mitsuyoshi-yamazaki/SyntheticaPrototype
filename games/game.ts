@@ -1,4 +1,3 @@
-
 import type { Material, WorldConfig } from "./types"
 import { createGameObjectId } from "./types"
 import { World } from "./World"
@@ -17,11 +16,13 @@ export class GameEngine {
   }
 
   public start(tickRate = 60, onUpdate?: () => void): void {
-    if (this.isRunning) {return}
-    
+    if (this.isRunning) {
+      return
+    }
+
     this.isRunning = true
     this.onUpdate = onUpdate
-    
+
     this.tickInterval = window.setInterval(() => {
       this.world.update()
       this.onUpdate?.()
@@ -29,8 +30,10 @@ export class GameEngine {
   }
 
   public stop(): void {
-    if (!this.isRunning) {return}
-    
+    if (!this.isRunning) {
+      return
+    }
+
     this.isRunning = false
     if (this.tickInterval !== null) {
       clearInterval(this.tickInterval)
@@ -47,7 +50,13 @@ export class GameEngine {
     material: Material,
   ): GameObject {
     const gameObjectId = createGameObjectId(id)
-    const object = new GameObject(gameObjectId, { x, y }, radius, mass, material)
+    const object = new GameObject(
+      gameObjectId,
+      { x, y },
+      radius,
+      mass,
+      material,
+    )
     this.world.addObject(object)
     return object
   }

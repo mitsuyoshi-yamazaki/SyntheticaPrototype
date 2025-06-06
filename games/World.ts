@@ -1,5 +1,10 @@
-
-import type { World as IWorld, WorldConfig, GameObject, Vector2D, GameObjectId } from "./types"
+import type {
+  World as IWorld,
+  WorldConfig,
+  GameObject,
+  Vector2D,
+  GameObjectId,
+} from "./types"
 import { subtractVectors, multiplyVector, normalize } from "./utils/vector"
 
 export class World implements IWorld {
@@ -26,23 +31,26 @@ export class World implements IWorld {
   }
 
   public removeObject(id: GameObjectId): void {
-    this._objects = this._objects.filter(obj => obj.id !== id)
+    this._objects = this._objects.filter((obj) => obj.id !== id)
   }
 
   public update(): void {
     this._tick++
-    
+
     // Update all objects
-    this._objects.forEach(object => {
+    this._objects.forEach((object) => {
       object.update(1, this.config) // deltaTime = 1 for discrete time steps
 
       // Wrap position around torus world - create new object with wrapped position
       const wrappedPosition = this.wrapPosition(object.position)
-      if (wrappedPosition.x !== object.position.x || wrappedPosition.y !== object.position.y) {
+      if (
+        wrappedPosition.x !== object.position.x ||
+        wrappedPosition.y !== object.position.y
+      ) {
         object.position = wrappedPosition
       }
     })
-    
+
     // Check and resolve collisions
     this.checkCollisions()
   }
@@ -52,7 +60,7 @@ export class World implements IWorld {
       for (let j = i + 1; j < this._objects.length; j++) {
         const objA = this._objects[i]
         const objB = this._objects[j]
-        
+
         if (objA != null && objB != null) {
           this.resolveCollision(objA, objB)
         }
@@ -63,26 +71,35 @@ export class World implements IWorld {
   private resolveCollision(objA: GameObject, objB: GameObject): void {
     const distance = objA.getDistanceTo(objB)
     const minDistance = objA.radius + objB.radius
-    
+
     if (distance < minDistance && distance > 0) {
       // Objects are overlapping, apply separation force
       const overlap = minDistance - distance
       const direction = normalize(subtractVectors(objB.position, objA.position))
-      
+
       // Force magnitude proportional to overlap and masses
       const totalMass = objA.mass + objB.mass
-      const forceA = multiplyVector(direction, -overlap * objB.mass / totalMass)
-      const forceB = multiplyVector(direction, overlap * objA.mass / totalMass)
-      
+      const forceA = multiplyVector(
+        direction,
+        (-overlap * objB.mass) / totalMass,
+      )
+      const forceB = multiplyVector(
+        direction,
+        (overlap * objA.mass) / totalMass,
+      )
+
       objA.applyForce(forceA)
       objB.applyForce(forceB)
     }
   }
 
   public wrapPosition(position: Vector2D): Vector2D {
-    const wrappedX = ((position.x % this.config.width) + this.config.width) % this.config.width
-    const wrappedY = ((position.y % this.config.height) + this.config.height) % this.config.height
-    
+    const wrappedX =
+      ((position.x % this.config.width) + this.config.width) % this.config.width
+    const wrappedY =
+      ((position.y % this.config.height) + this.config.height) %
+      this.config.height
+
     return { x: wrappedX, y: wrappedY }
   }
 

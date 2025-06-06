@@ -8,24 +8,26 @@ function CanvasComponent() {
   const [isRunning, setIsRunning] = useState(false)
 
   useEffect(() => {
-    if (canvasRef.current == null) {return}
+    if (canvasRef.current == null) {
+      return
+    }
 
     let p5Instance: p5 | null = null
 
     const loadP5AndCreateSketch = async () => {
       try {
         const p5Constructor = (await import("p5")).default
-        
+
         // Initialize game engine
         const config = createDefaultWorldConfig()
         const engine = new GameEngine(config)
         setGameEngine(engine)
-        
+
         // Add some sample objects
         engine.addObject("obj1", 200, 200, 20, 10, "blue")
         engine.addObject("obj2", 300, 300, 15, 8, "blue")
         engine.addObject("obj3", 400, 250, 25, 15, "red")
-        
+
         const sketch = (p: p5) => {
           const viewScale = 0.8
           const viewOffsetX = 0
@@ -38,18 +40,18 @@ function CanvasComponent() {
 
           p.draw = () => {
             p.background(30)
-            
+
             // Transform to world coordinates
             p.push()
             p.translate(viewOffsetX, viewOffsetY)
             p.scale(viewScale)
-            
+
             // Draw world bounds
             p.stroke(100)
             p.strokeWeight(2 / viewScale)
             p.noFill()
             p.rect(0, 0, config.width, config.height)
-            
+
             // Draw objects
             const objects = engine.getObjects()
             for (const obj of objects) {
@@ -61,13 +63,13 @@ function CanvasComponent() {
               } else {
                 p.fill(150, 150, 150)
               }
-              
+
               p.stroke(255)
               p.strokeWeight(1 / viewScale)
-              
+
               // Draw circle
               p.circle(obj.position.x, obj.position.y, obj.radius * 2)
-              
+
               // Draw velocity vector
               if (obj.velocity.x !== 0 || obj.velocity.y !== 0) {
                 p.stroke(255, 255, 0)
@@ -77,9 +79,9 @@ function CanvasComponent() {
                 p.line(obj.position.x, obj.position.y, endX, endY)
               }
             }
-            
+
             p.pop()
-            
+
             // Draw UI
             p.fill(255)
             p.textSize(16)
@@ -90,20 +92,27 @@ function CanvasComponent() {
           }
 
           p.mousePressed = () => {
-            if (p.mouseX < 0 || p.mouseX > p.width || p.mouseY < 0 || p.mouseY > p.height) {return}
-            
+            if (
+              p.mouseX < 0 ||
+              p.mouseX > p.width ||
+              p.mouseY < 0 ||
+              p.mouseY > p.height
+            ) {
+              return
+            }
+
             // Convert screen coordinates to world coordinates
             const worldX = (p.mouseX - viewOffsetX) / viewScale
             const worldY = (p.mouseY - viewOffsetY) / viewScale
-            
+
             // Apply random forces to nearby objects
             const objects = engine.getObjects()
             for (const obj of objects) {
               const distance = Math.sqrt(
-                Math.pow(obj.position.x - worldX, 2) + 
-                Math.pow(obj.position.y - worldY, 2)
+                Math.pow(obj.position.x - worldX, 2) +
+                  Math.pow(obj.position.y - worldY, 2),
               )
-              
+
               if (distance < 100) {
                 const forceX = (Math.random() - 0.5) * 200
                 const forceY = (Math.random() - 0.5) * 200
@@ -139,8 +148,10 @@ function CanvasComponent() {
   }, [])
 
   const toggleSimulation = () => {
-    if (gameEngine == null) {return}
-    
+    if (gameEngine == null) {
+      return
+    }
+
     if (isRunning) {
       gameEngine.stop()
       setIsRunning(false)
@@ -151,15 +162,17 @@ function CanvasComponent() {
   }
 
   const addRandomObject = () => {
-    if (gameEngine == null) {return}
-    
+    if (gameEngine == null) {
+      return
+    }
+
     const x = Math.random() * 1000
     const y = Math.random() * 1000
     const radius = 10 + Math.random() * 20
     const mass = radius / 2
     const material = Math.random() > 0.5 ? "blue" : "red"
     const id = `obj_${Date.now()}_${Math.random()}`
-    
+
     gameEngine.addObject(id, x, y, radius, mass, material)
   }
 
@@ -179,8 +192,8 @@ function CanvasComponent() {
           Add Object
         </button>
       </div>
-      <div 
-        ref={canvasRef} 
+      <div
+        ref={canvasRef}
         className="w-full h-full"
         style={{ minHeight: "400px" }}
       />

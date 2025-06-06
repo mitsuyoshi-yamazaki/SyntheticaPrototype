@@ -1,11 +1,16 @@
-
-import type { GameObject as IGameObject, Vector2D, WorldConfig, GameObjectId, Material } from "../types"
-import { 
-  addVectors, 
-  multiplyVector, 
-  limitMagnitude, 
+import type {
+  GameObject as IGameObject,
+  Vector2D,
+  WorldConfig,
+  GameObjectId,
+  Material,
+} from "../types"
+import {
+  addVectors,
+  multiplyVector,
+  limitMagnitude,
   getDistance,
-  createVector
+  createVector,
 } from "../utils/vector"
 
 export class GameObject implements IGameObject {
@@ -13,7 +18,7 @@ export class GameObject implements IGameObject {
   public readonly radius: number
   public readonly mass: number
   public readonly material: Material
-  
+
   // Mutable properties for physics simulation
   public position: Vector2D
   public velocity: Vector2D
@@ -46,18 +51,27 @@ export class GameObject implements IGameObject {
 
   public update(deltaTime: number, worldConfig: WorldConfig): void {
     // Update velocity based on acceleration
-    this.velocity = addVectors(this.velocity, multiplyVector(this.acceleration, deltaTime))
-    
+    this.velocity = addVectors(
+      this.velocity,
+      multiplyVector(this.acceleration, deltaTime),
+    )
+
     // Apply friction
     const frictionForce = multiplyVector(this.velocity, -worldConfig.friction)
-    this.velocity = addVectors(this.velocity, multiplyVector(frictionForce, deltaTime))
-    
+    this.velocity = addVectors(
+      this.velocity,
+      multiplyVector(frictionForce, deltaTime),
+    )
+
     // Limit velocity to maximum speed
     this.velocity = limitMagnitude(this.velocity, worldConfig.maxSpeed)
-    
+
     // Update position based on velocity
-    this.position = addVectors(this.position, multiplyVector(this.velocity, deltaTime))
-    
+    this.position = addVectors(
+      this.position,
+      multiplyVector(this.velocity, deltaTime),
+    )
+
     // Reset acceleration for next frame
     this.acceleration = createVector(0, 0)
   }

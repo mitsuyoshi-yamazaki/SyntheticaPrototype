@@ -1,9 +1,9 @@
-
 // Nominal Types
 declare const GameObjectIdBrand: unique symbol
 export type GameObjectId = string & { [GameObjectIdBrand]: never }
 
-export const createGameObjectId = (id: string): GameObjectId => id as GameObjectId
+export const createGameObjectId = (id: string): GameObjectId =>
+  id as GameObjectId
 
 // Immutable Vector2D
 export interface Vector2D {
@@ -37,9 +37,9 @@ export interface WorldConfig {
 // GameObject interface
 export interface GameObject {
   readonly id: GameObjectId
-  position: Vector2D  // mutable for physics simulation
+  position: Vector2D // mutable for physics simulation
   readonly radius: number
-  velocity: Vector2D  // mutable for physics simulation
+  velocity: Vector2D // mutable for physics simulation
   readonly mass: number
   readonly material: Material
   applyForce(force: Vector2D): void

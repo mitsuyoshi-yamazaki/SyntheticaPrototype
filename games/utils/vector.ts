@@ -1,4 +1,3 @@
-
 import type { Vector2D } from "../types"
 
 export const createVector = (x: number, y: number): Vector2D => ({ x, y })
@@ -29,13 +28,20 @@ export const getMagnitude = (vector: Vector2D): number => {
 
 export const normalize = (vector: Vector2D): Vector2D => {
   const magnitude = getMagnitude(vector)
-  if (magnitude === 0) {return { x: 0, y: 0 }}
+  if (magnitude === 0) {
+    return { x: 0, y: 0 }
+  }
   return divideVector(vector, magnitude)
 }
 
-export const limitMagnitude = (vector: Vector2D, maxMagnitude: number): Vector2D => {
+export const limitMagnitude = (
+  vector: Vector2D,
+  maxMagnitude: number,
+): Vector2D => {
   const magnitude = getMagnitude(vector)
-  if (magnitude <= maxMagnitude) {return vector}
+  if (magnitude <= maxMagnitude) {
+    return vector
+  }
   return multiplyVector(normalize(vector), maxMagnitude)
 }
 
