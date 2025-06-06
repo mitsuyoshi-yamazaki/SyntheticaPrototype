@@ -22,5 +22,10 @@
 - 関数定義は可能な限りfunctionではなくconstを用いる
 - 言語仕様としてのEnumは使わず、Literal Union型もしくはDiscriminated Union型を用いる
   - Discriminated Union型を用いる場合は、Discriminatorのプロパティ名は"case"とする
-- private変数は "\_" から始まるメンバ名をつける
+- private変数は `_` から始まるメンバ名をつける
 - forループは forEach(), for-of, for-in の順で優先する。for-inは極力使用しない
+
+## テスト
+
+- テストファイルはそのテスト対象と同じディレクトリ階層に、 <テスト対象ファイル名>.test.ts のファイル名で作成する
+- テストケースの説明は日本語で行う
