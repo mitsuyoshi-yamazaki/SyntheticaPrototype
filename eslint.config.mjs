@@ -44,6 +44,8 @@ export default defineConfig([
     rules: {
       "quotes": ["error", "double", { "avoidEscape": true }],
       "semi": ["error", "never"],
+      "eqeqeq": ["error", "always", { "null": "ignore" }],
+      "curly": "error",
       // Next.js関連のルール調整
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
@@ -51,6 +53,19 @@ export default defineConfig([
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
       "@typescript-eslint/explicit-member-accessibility": "error",
+      "@typescript-eslint/strict-boolean-expressions": [
+        "error",
+        {
+          "allowString": false,
+          "allowNumber": false,
+          "allowNullableObject": false,
+          "allowNullableBoolean": false,
+          "allowNullableString": false,
+          "allowNullableNumber": false,
+          "allowNullableEnum": false,
+          "allowAny": false
+        }
+      ],
       // React関連のルール調整
       "react/react-in-jsx-scope": "off", // Next.jsでは不要
       "react/prop-types": "off", // TypeScriptを使用しているため
