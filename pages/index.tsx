@@ -1,15 +1,18 @@
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import Layout from '../components/Layout'
+import Head from "next/head"
+import dynamic from "next/dynamic"
+import Layout from "../components/Layout"
 
 // p5.jsコンポーネントをSSRを無効にして動的インポート
-const Canvas = dynamic(() => import('../components/Canvas'), {
+const Canvas = dynamic(() => import("../components/Canvas"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center" style={{ minHeight: '400px' }}>
+    <div
+      className="w-full h-full flex items-center justify-center"
+      style={{ minHeight: "400px" }}
+    >
       <p className="text-gray-600">Canvas Loading...</p>
     </div>
-  )
+  ),
 })
 
 export default function Home() {
@@ -17,7 +20,10 @@ export default function Home() {
     <>
       <Head>
         <title>Synthetica Prototype</title>
-        <meta name="description" content="MMOゲームプロトタイプ - エージェントシミュレーション" />
+        <meta
+          name="description"
+          content="MMOゲームプロトタイプ - エージェントシミュレーション"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
