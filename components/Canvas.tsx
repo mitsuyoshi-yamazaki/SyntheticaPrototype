@@ -11,6 +11,7 @@ function CanvasComponent() {
     if (canvasRef.current == null) {
       return
     }
+    const canvasContainer = canvasRef.current
 
     let p5Instance: p5 | null = null
 
@@ -122,15 +123,14 @@ function CanvasComponent() {
           }
 
           p.windowResized = () => {
-            const container = canvasRef.current
-            if (container != null) {
-              p.resizeCanvas(container.offsetWidth, container.offsetHeight)
-            }
+            p.resizeCanvas(
+              canvasContainer.offsetWidth,
+              canvasContainer.offsetHeight,
+            )
           }
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        p5Instance = new p5Constructor(sketch, canvasRef.current!)
+        p5Instance = new p5Constructor(sketch, canvasContainer)
       } catch (error) {
         console.error("Failed to load p5.js:", error)
       }
