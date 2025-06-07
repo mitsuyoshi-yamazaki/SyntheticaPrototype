@@ -82,7 +82,7 @@ export class GameEngine {
 export const createDefaultWorldConfig = (): WorldConfig => ({
   width: 1000,
   height: 1000,
-  friction: 0.1,
+  friction: 0.001,
   maxSpeed: 1000,
   adjacencyBuffer: 1,
 })

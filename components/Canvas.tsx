@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import type p5 from "p5"
 import { GameEngine, createDefaultWorldConfig } from "../games/game"
+import { createVector } from "@/games/utils/vector"
 
 function CanvasComponent() {
   const canvasRef = useRef<HTMLDivElement>(null)
@@ -12,6 +13,7 @@ function CanvasComponent() {
       return
     }
     const canvasContainer = canvasRef.current
+    const canvasSize = createVector(800, 600)
 
     let p5Instance: p5 | null = null
 
@@ -29,13 +31,25 @@ function CanvasComponent() {
         engine.addObject("obj2", 300, 300, 15, 8, "blue")
         engine.addObject("obj3", 400, 250, 25, 15, "red")
 
+        const numberOfObjects = 100
+        for (let i = 0; i < numberOfObjects; i++) {
+          const x = Math.random() * canvasSize.x
+          const y = Math.random() * canvasSize.y
+          const radius = 10 + Math.random() * 20
+          const mass = radius / 2
+          const material = Math.random() > 0.5 ? "blue" : "red"
+          const id = `obj_${i}`
+
+          engine.addObject(id, x, y, radius, mass, material)
+        }
+
         const sketch = (p: p5) => {
           const viewScale = 0.8
           const viewOffsetX = 0
           const viewOffsetY = 0
 
           p.setup = () => {
-            p.createCanvas(800, 600)
+            p.createCanvas(canvasSize.x, canvasSize.y)
             p.background(30)
           }
 
