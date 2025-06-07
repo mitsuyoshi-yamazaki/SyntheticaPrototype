@@ -12,6 +12,7 @@ import {
   getDistance,
   createVector,
 } from "../utils/vector"
+import { Physics } from "../Physics"
 
 export class GameObject implements IGameObject {
   public readonly id: GameObjectId
@@ -56,11 +57,11 @@ export class GameObject implements IGameObject {
       multiplyVector(this.acceleration, deltaTime),
     )
 
-    // Apply friction
-    const frictionForce = multiplyVector(this.velocity, -worldConfig.friction)
-    this.velocity = addVectors(
+    // Apply friction using Physics class
+    this.velocity = Physics.applyFriction(
       this.velocity,
-      multiplyVector(frictionForce, deltaTime),
+      worldConfig.friction,
+      deltaTime,
     )
 
     // Limit velocity to maximum speed
