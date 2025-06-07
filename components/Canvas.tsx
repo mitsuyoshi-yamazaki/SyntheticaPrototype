@@ -136,9 +136,9 @@ function CanvasComponent() {
       }
     }
 
-    // FixMe
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    loadP5AndCreateSketch()
+    loadP5AndCreateSketch().catch((error) => {
+      console.error("Error initializing p5.js sketch: ", error)
+    })
 
     return () => {
       if (p5Instance != null) {
