@@ -49,7 +49,7 @@ export class GameObject implements IGameObject {
     this.acceleration = addVectors(this.acceleration, acceleration)
   }
 
-  public update(deltaTime: number, worldConfig: WorldConfig): void {
+  public updatePosition(deltaTime: number, worldConfig: WorldConfig): void {
     // Update velocity based on acceleration
     this.velocity = addVectors(
       this.velocity,

@@ -67,7 +67,7 @@ describe("GameObject", () => {
 
     // Apply force
     obj.applyForce({ x: 10, y: 0 })
-    obj.update(1, config)
+    obj.updatePosition(1, config)
 
     // Velocity should be increased by force/mass, reduced by friction
     // Expected: 10 * (1 - friction) = 10 * 0.9 = 9

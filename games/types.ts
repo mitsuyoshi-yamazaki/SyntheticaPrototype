@@ -43,7 +43,7 @@ export interface GameObject {
   readonly mass: number
   readonly material: Material
   applyForce(force: Vector2D): void
-  update(deltaTime: number, worldConfig: WorldConfig): void
+  updatePosition(deltaTime: number, worldConfig: WorldConfig): void
   getDistanceTo(other: GameObject): number
   isAdjacentTo(other: GameObject, adjacencyBuffer: number): boolean
 }

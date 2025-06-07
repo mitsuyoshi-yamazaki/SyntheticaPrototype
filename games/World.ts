@@ -39,7 +39,7 @@ export class World implements IWorld {
 
     // Update all objects
     this._objects.forEach((object) => {
-      object.update(1, this.config) // deltaTime = 1 for discrete time steps
+      object.updatePosition(1, this.config) // deltaTime = 1 for discrete time steps
 
       // Wrap position around torus world - create new object with wrapped position
       const wrappedPosition = this.wrapPosition(object.position)

@@ -39,7 +39,7 @@ describe("GameObject", () => {
     const force: Vector2D = createVector(10, 0)
 
     gameObject.applyForce(force)
-    gameObject.update(1, mockWorldConfig)
+    gameObject.updatePosition(1, mockWorldConfig)
 
     expect(gameObject.velocity).toEqual({ x: 9, y: 0 }) // 摩擦適用後
     expect(gameObject.position).toEqual({ x: 9, y: 0 })
