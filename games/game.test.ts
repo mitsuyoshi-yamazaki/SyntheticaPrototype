@@ -1,13 +1,21 @@
-import { GameEngine, createDefaultWorldConfig } from "./game"
+import { GameEngine } from "./game"
 import { GameObject } from "./objects/GameObject"
 import { World } from "./World"
-import { createGameObjectId } from "./types"
+import { createGameObjectId, WorldConfig } from "./types"
+
+const createConfigForTest = (): WorldConfig => ({
+  width: 1000,
+  height: 1000,
+  friction: 0.1,
+  maxSpeed: 1000,
+  adjacencyBuffer: 1,
+})
 
 describe("GameEngine", () => {
   let gameEngine: GameEngine
 
   beforeEach(() => {
-    const config = createDefaultWorldConfig()
+    const config = createConfigForTest()
     gameEngine = new GameEngine(config)
   })
 
@@ -55,7 +63,7 @@ describe("GameObject", () => {
       1,
       "blue",
     )
-    const config = createDefaultWorldConfig()
+    const config = createConfigForTest()
 
     // Apply force
     obj.applyForce({ x: 10, y: 0 })
@@ -119,7 +127,7 @@ describe("GameObject", () => {
 
 describe("World", () => {
   test("should wrap position correctly for torus world", () => {
-    const config = createDefaultWorldConfig()
+    const config = createConfigForTest()
     const world = new World(config)
 
     // Test wrapping beyond positive boundary
@@ -134,7 +142,7 @@ describe("World", () => {
   })
 
   test("should check adjacency between objects", () => {
-    const config = createDefaultWorldConfig()
+    const config = createConfigForTest()
     const world = new World(config)
 
     const obj1 = new GameObject(
